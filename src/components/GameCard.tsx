@@ -1,32 +1,32 @@
-import { Card, CardBody, HStack, Heading, Image, Text } from "@chakra-ui/react";
-import { Game } from "../hooks/useGames";
+import {Card, CardBody, HStack, Heading, Image, Text} from "@chakra-ui/react";
+import {Game} from "../hooks/useGames";
 import PlatformIconList from "./PlatformIconList";
 import CriticScore from "./CriticScore";
+import getCroppedImageUrl from "../services/image-util";
 
 interface Props {
-  game: Game;
+    game: Game;
 }
 
-function GameCard({ game }: Props) {
-  return (
-    <Card borderRadius={10} overflow={"hidden"}>
-      <Image
-        src={game.background_image}
-        objectFit={"cover"}
-        width="100%"
-        height="100%"
-      />
-      <CardBody>
-        <Heading fontSize="2xl">{game.name}</Heading>
-        <HStack justifyContent="space-between">
-          <PlatformIconList
-            platforms={game.parent_platforms.map((p) => p.platform)}
-          />
-          <CriticScore score={game.metacritic} />
-        </HStack>
-      </CardBody>
-    </Card>
-  );
+function GameCard({game}: Props) {
+    return (
+        <Card width="214.05px" borderRadius={10} overflow={"hidden"}>
+            <Image src={getCroppedImageUrl(game.background_image)}/>
+            <CardBody>
+                <Heading fontSize="2xl">{game.name}</Heading>
+                <HStack
+                    justifyContent="space-between"
+                    flexWrap={"wrap"}
+                    alignContent={"end"}
+                >
+                    <PlatformIconList
+                        platforms={game.parent_platforms.map((p) => p.platform)}
+                    />
+                    <CriticScore score={game.metacritic}/>
+                </HStack>
+            </CardBody>
+        </Card>
+    );
 }
 
 export default GameCard;

@@ -1,43 +1,50 @@
-import { useState, useEffect } from "react";
-import apiClient, { CanceledError } from "../services/api-client";
+import {useState, useEffect} from "react";
+import apiClient, {CanceledError} from "../services/api-client";
 
 export interface Platform {
-  id: number;
-  name: string;
-  slug: string;
+    id: number;
+    name: string;
+    slug: string;
 }
 
 export interface Game {
-  id: number;
-  name: string;
-  background_image: string;
-  parent_platforms: { platform: Platform[] };
-  metacritic: number;
+    id: number;
+    name: string;
+    background_image: string;
+    parent_platforms: { platform: Platform[] };
+    metacritic: number;
 }
 
 interface FetchGamesResponse {
-  count: number;
-  results: Game[];
+    count: number;
+    results: Game[];
 }
 
 const useGames = () => {
-  const [games, setGames] = useState<Game[]>([]);
-  const [error, setError] = useState([]);
+    const [games, setGames] = useState<Game[]>([]);
+    const [error, setError] = useState([]);
+    const [isLoading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const controller = new AbortController();
-    apiClient
-      .get<FetchGamesResponse>("/games", { signal: controller.signal })
-      .then((res) => setGames(res.data.results))
-      .catch((err) => {
-        if (err instanceof CanceledError) return;
-        setError(err.message);
-      });
+    useEffect(() => {
+        const controller = new AbortController();
 
-    return () => controller.abort();
-  }, []);
+        setLoading(true);
+        apiClient
+            .get<FetchGamesResponse>("/games", {signal: controller.signal})
+            .then((res) => {
+                setGames(res.data.results);
+                setLoading(false);
+            })
+            .catch((err) => {
+                if (err instanceof CanceledError) return;
+                setError(err.message);
+                setLoading(false)
+            });
 
-  return { games, setGames, error, setError };
+        return () => controller.abort();
+    }, []);
+
+    return {games, setGames, error, setError, isLoading, setLoading};
 };
 
 export default useGames;
