@@ -4,9 +4,15 @@ import GameCard from "./GameCard";
 import { GameCardSkeleton } from "./GameCardSkeleton.tsx";
 import { GameCardContainer } from "./GameCardContainer.tsx";
 import { v4 as uuid } from "uuid";
+import { Genre } from "../hooks/useGenres.ts";
 
-function GameGrid() {
-  const { error, data, isLoading } = useGames();
+interface Props {
+  selectedGenre: Genre | null;
+}
+
+function GameGrid({ selectedGenre }: Props) {
+  const { error, data, isLoading } = useGames(selectedGenre);
+
   /*const skeletons = Array.from({length: games.length}, () => (0));*/
 
   const skeletons = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
