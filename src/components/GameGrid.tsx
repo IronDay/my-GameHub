@@ -4,8 +4,6 @@ import GameCard from "./GameCard";
 import { GameCardSkeleton } from "./GameCardSkeleton.tsx";
 import { GameCardContainer } from "./GameCardContainer.tsx";
 import { v4 as uuid } from "uuid";
-import { Genre } from "../hooks/useGenres.ts";
-import { Platform } from "../hooks/usePlatforms.ts";
 import { GameQuery } from "../App.tsx";
 
 interface Props {
@@ -25,7 +23,8 @@ function GameGrid({ gameQuery }: Props) {
       <SimpleGrid
         columns={{ sm: 1, md: 2, lg: 3, xl: 5 }}
         spacing={3}
-        padding={10}
+        paddingX={10}
+        paddingY={5}
       >
         {isLoading &&
           skeletons.map((skeleton) => (
