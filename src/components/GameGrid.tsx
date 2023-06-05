@@ -6,14 +6,14 @@ import { GameCardContainer } from "./GameCardContainer.tsx";
 import { v4 as uuid } from "uuid";
 import { Genre } from "../hooks/useGenres.ts";
 import { Platform } from "../hooks/usePlatforms.ts";
+import { GameQuery } from "../App.tsx";
 
 interface Props {
-  selectedGenre: Genre | null;
-  selectedPlatform: Platform | null;
+  gameQuery: GameQuery;
 }
 
-function GameGrid({ selectedGenre, selectedPlatform }: Props) {
-  const { error, data, isLoading } = useGames(selectedGenre, selectedPlatform);
+function GameGrid({ gameQuery }: Props) {
+  const { error, data, isLoading } = useGames(gameQuery);
 
   /*const skeletons = Array.from({length: games.length}, () => (0));*/
 

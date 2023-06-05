@@ -1,3 +1,4 @@
+import { GameQuery } from "../App.tsx";
 import useData from "./useData.ts";
 import { Genre } from "./useGenres.ts";
 import { Platform } from "./usePlatforms.ts";
@@ -24,14 +25,16 @@ interface FetchGamesResponse {
 }
 */
 
-const useGames = (
-  selectedGenre: Genre | null,
-  selectedPlatform: Platform | null
-) =>
+const useGames = (gameQuery: GameQuery) =>
   useData<Game>(
     "/games",
-    { params: { genres: selectedGenre?.id, platforms: selectedPlatform?.id } },
-    [selectedGenre?.id, selectedPlatform?.id]
+    {
+      params: {
+        genres: gameQuery.genre?.id,
+        platforms: gameQuery.platform?.id,
+      },
+    },
+    [gameQuery]
   );
 
 /*const [games, setGames] = useState<Game[]>([]);
