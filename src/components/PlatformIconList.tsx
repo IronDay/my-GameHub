@@ -6,11 +6,11 @@ import {
   FaLinux,
   FaAndroid,
 } from "react-icons/fa";
-import { MdPhoneAndroid, MdPhoneIphone } from "react-icons/md";
+import { SiIos } from "react-icons/si";
 import { SiNintendo } from "react-icons/si";
 import { BsGlobe } from "react-icons/bs";
-import { HStack, Icon, Text } from "@chakra-ui/react";
-import { Platform } from "../hooks/useGames";
+import { HStack, Icon } from "@chakra-ui/react";
+import { Platform } from "../hooks/usePlatforms";
 import { IconType } from "react-icons";
 
 interface Props {
@@ -24,7 +24,7 @@ const PlatformIconList = ({ platforms }: Props) => {
     nintendo: SiNintendo,
     mac: FaApple,
     linux: FaLinux,
-    ios: MdPhoneIphone,
+    ios: SiIos,
     android: FaAndroid,
     web: BsGlobe,
   };
