@@ -12,7 +12,10 @@ interface Props {
 
 function GameGrid({ gameQuery }: Props) {
   const { error, data, isLoading } = useGames(gameQuery);
-  const skeletons = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  const skeletons = [
+    0, 10, 20, 30, 50, 60, 70, 80, 90, 40, 100, 200, 400, 500, 600, 990, 560,
+    250, 360,
+  ];
 
   if (error.length > 0) return <Text>{error.map((err) => err)}</Text>;
 
