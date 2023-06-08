@@ -24,7 +24,7 @@ function GameGrid({ gameQuery }: Props) {
       paddingY={5}
     >
       {isLoading &&
-        skeletons.map((skeleton) => (
+        skeletons.map(() => (
           <GameCardContainer key={uuid()}>
             <GameCardSkeleton />
           </GameCardContainer>
