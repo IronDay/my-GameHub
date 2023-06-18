@@ -1,25 +1,20 @@
-import { Box, Button, SimpleGrid, Text } from "@chakra-ui/react";
-import useGames from "../hooks/useGames";
-import GameCard from "./GameCard";
-import { GameCardSkeleton } from "./GameCardSkeleton.tsx";
-import { GameCardContainer } from "./GameCardContainer.tsx";
+import { SimpleGrid, Spinner, Text } from "@chakra-ui/react";
+import React from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 import { v4 as uuid } from "uuid";
 import { GameQuery } from "../App.tsx";
-import React from "react";
+import useGames from "../hooks/useGames";
+import GameCard from "./GameCard";
+import { GameCardContainer } from "./GameCardContainer.tsx";
+import { GameCardSkeleton } from "./GameCardSkeleton.tsx";
 
 interface Props {
   gameQuery: GameQuery;
 }
 
 function GameGrid({ gameQuery }: Props) {
-  const {
-    error,
-    data,
-    isLoading,
-    isFetchingNextPage,
-    fetchNextPage,
-    hasNextPage,
-  } = useGames(gameQuery);
+  const { error, data, isLoading, fetchNextPage, hasNextPage } =
+    useGames(gameQuery);
   const skeletons = [
     0, 10, 20, 30, 50, 60, 70, 80, 90, 40, 100, 200, 400, 500, 600, 990, 560,
     250, 360,
@@ -41,12 +36,21 @@ function GameGrid({ gameQuery }: Props) {
       </Text>
     );
 
+  const fetchedGamesCount =
+    data?.pages.reduce((acc, page) => acc + page.results.length, 0) || 0;
+
   return (
-    <Box paddingX={10}>
+    <InfiniteScroll
+      dataLength={fetchedGamesCount}
+      hasMore={!!hasNextPage}
+      next={() => fetchNextPage()}
+      loader={<Spinner />}
+    >
       <SimpleGrid
         columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
+        paddingX={10}
         spacing={6}
-        paddingY={1}
+        paddingY={6}
       >
         {isLoading &&
           skeletons.map(() => (
@@ -64,12 +68,7 @@ function GameGrid({ gameQuery }: Props) {
           </React.Fragment>
         ))}
       </SimpleGrid>
-      {hasNextPage && (
-        <Button onClick={() => fetchNextPage()}>
-          {isFetchingNextPage ? "Loading..." : "Load More"}
-        </Button>
-      )}
-    </Box>
+    </InfiniteScroll>
   );
 }
 
