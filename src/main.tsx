@@ -10,6 +10,9 @@ import "./index.css";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const queryClient = new QueryClient();
+const REACT_VERSION = React.version;
+
+console.log(REACT_VERSION);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>

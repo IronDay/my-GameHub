@@ -17,7 +17,21 @@ function GameGrid({ gameQuery }: Props) {
     250, 360,
   ];
 
-  if (error.length > 0) return <Text>{error.map((err) => err)}</Text>;
+  if (error)
+    return (
+      <Text
+        style={{
+          minHeight: "100vh",
+          color: "orangered",
+          fontSize: "18px",
+          display: "flex",
+          justifyContent: "center",
+          alignContent: "center",
+        }}
+      >
+        {error.message}
+      </Text>
+    );
 
   return (
     <SimpleGrid
@@ -32,7 +46,7 @@ function GameGrid({ gameQuery }: Props) {
             <GameCardSkeleton />
           </GameCardContainer>
         ))}
-      {data.map((game) => (
+      {data?.results.map((game) => (
         <GameCardContainer key={game.id}>
           <GameCard game={game} />
         </GameCardContainer>
