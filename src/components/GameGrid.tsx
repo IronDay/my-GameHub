@@ -8,13 +8,8 @@ import GameCard from "./GameCard";
 import { GameCardContainer } from "./GameCardContainer.tsx";
 import { GameCardSkeleton } from "./GameCardSkeleton.tsx";
 
-interface Props {
-  gameQuery: GameQuery;
-}
-
-function GameGrid({ gameQuery }: Props) {
-  const { error, data, isLoading, fetchNextPage, hasNextPage } =
-    useGames(gameQuery);
+function GameGrid() {
+  const { error, data, isLoading, fetchNextPage, hasNextPage } = useGames();
   const skeletons = [
     0, 10, 20, 30, 50, 60, 70, 80, 90, 40, 100, 200, 400, 500, 600, 990, 560,
     250, 360,
