@@ -2,7 +2,6 @@ import { SimpleGrid, Spinner, Text } from "@chakra-ui/react";
 import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { v4 as uuid } from "uuid";
-import { GameQuery } from "../App.tsx";
 import useGames from "../hooks/useGames";
 import GameCard from "./GameCard";
 import { GameCardContainer } from "./GameCardContainer.tsx";
