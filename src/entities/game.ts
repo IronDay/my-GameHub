@@ -1,5 +1,6 @@
 import { Platform } from "./Platform.ts";
 import { Genre } from "./Genre.ts";
+import { Publisher } from "./Publisher.ts";
 
 export interface Game {
   id: number;
@@ -10,6 +11,7 @@ export interface Game {
   slug: string;
   description_raw: string;
   genres: Genre[];
+  publishers: Publisher[];
   rating_top: number;
   rating: number;
 }

@@ -1,7 +1,10 @@
 import { useParams } from "react-router-dom";
 import useGame from "../hooks/useGame.ts";
-import { Heading, Spinner } from "@chakra-ui/react";
+import { Text, Heading, Spinner, SimpleGrid } from "@chakra-ui/react";
 import ExpandableText from "../components/ExpandableText.tsx";
+import DefinitionItem from "../components/DefinitionItem.tsx";
+import CriticScore from "../components/CriticScore.tsx";
+import GameAttribute from "../components/GameAttribute.tsx";
 
 const GameDetailsPage = () => {
   const maxChars = 300;
@@ -18,6 +21,7 @@ const GameDetailsPage = () => {
       <ExpandableText maxChars={maxChars}>
         {game.description_raw}
       </ExpandableText>
+      <GameAttribute game={game} />
     </>
   );
 };
