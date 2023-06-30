@@ -1,6 +1,6 @@
-import Platform from "./Platform.ts";
-import Genre from "./Genre.ts";
-import Publisher from "./Publisher.ts";
+import Platform from "./Platform";
+import Genre from "./Genre";
+import Publisher from "./Publisher";
 
 export default interface Game {
   id: number;
