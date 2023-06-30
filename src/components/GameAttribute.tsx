@@ -11,8 +11,8 @@ const GameAttribute = ({ game }: Props) => {
   return (
     <SimpleGrid columns={2} as={"dl"}>
       <DefinitionItem term="Platforms">
-        {game.parent_platforms?.map(({ platform }) => (
-          <Text key={platform.id}>{platform.name}</Text>
+        {game.parent_platforms?.map(({ platform: { id, name } }) => (
+          <Text key={id}>{name}</Text>
         ))}
       </DefinitionItem>
       <DefinitionItem term="Metasore">
@@ -24,8 +24,8 @@ const GameAttribute = ({ game }: Props) => {
         ))}
       </DefinitionItem>
       <DefinitionItem term="Publishers">
-        {game.publishers.map((publisher) => (
-          <Text key={publisher.id}>{publisher.name}</Text>
+        {game.publishers.map(({ id, name }) => (
+          <Text key={id}>{name}</Text>
         ))}
       </DefinitionItem>
     </SimpleGrid>

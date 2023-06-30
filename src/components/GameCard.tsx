@@ -5,7 +5,7 @@ import PlatformIconList from "./PlatformIconList";
 import CriticScore from "./CriticScore";
 import getCroppedImageUrl from "../services/image-util";
 import Emojis from "./Emojis";
-import Game from "../entities/Game.ts";
+import Game from "../entities/Game";
 
 interface Props {
   game: Game;
@@ -24,7 +24,7 @@ function GameCard({ game }: Props) {
           marginBottom={3}
         >
           <PlatformIconList
-            platforms={game.parent_platforms.map((p) => p.platform)}
+            platforms={game.parent_platforms.map(({ platform }) => platform)}
           />
           <CriticScore score={game.metacritic} />
         </HStack>
