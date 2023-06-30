@@ -19,8 +19,8 @@ const GameAttribute = ({ game }: Props) => {
         <CriticScore score={game.metacritic} />
       </DefinitionItem>
       <DefinitionItem term="Genres">
-        {game.genres.map((g) => (
-          <Text key={g.id}>{g.name}</Text>
+        {game.genres.map(({ id, name }) => (
+          <Text key={id}>{name}</Text>
         ))}
       </DefinitionItem>
       <DefinitionItem term="Publishers">
