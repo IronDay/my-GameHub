@@ -5,6 +5,7 @@ import GameAttribute from "../components/GameAttribute.tsx";
 import useGame from "../hooks/useGame.ts";
 import useTrailer from "../hooks/useTrailers.ts";
 import GameTrailer from "../components/GameTrailer.tsx";
+import GameScreenshots from "../components/GameScreenshots.tsx";
 
 const GameDetailsPage = () => {
   const maxChars = 300;
@@ -23,6 +24,7 @@ const GameDetailsPage = () => {
       </ExpandableText>
       <GameAttribute game={game} />
       <GameTrailer gameId={game.id} />
+      <GameScreenshots gameId={game.id} />
     </>
   );
 };
