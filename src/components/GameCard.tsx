@@ -5,7 +5,7 @@ import PlatformIconList from "./PlatformIconList";
 import CriticScore from "./CriticScore";
 import getCroppedImageUrl from "../services/image-util";
 import Emojis from "./Emojis";
-import { Game } from "../entities/Game.ts";
+import Game from "../entities/Game.ts";
 
 interface Props {
   game: Game;

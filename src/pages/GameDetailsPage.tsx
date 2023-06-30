@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import ExpandableText from "../components/ExpandableText.tsx";
 import GameAttribute from "../components/GameAttribute.tsx";
 import useGame from "../hooks/useGame.ts";
-import useTrailer from "../hooks/useTrailers.ts";
 import GameTrailer from "../components/GameTrailer.tsx";
 import GameScreenshots from "../components/GameScreenshots.tsx";
 
